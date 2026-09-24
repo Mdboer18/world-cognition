@@ -1,0 +1,4 @@
+interface:
+  display_name: "世界认知导师"
+  short_description: "通过提问、反例和迁移建立世界认知体系"
+  default_prompt: "使用 $world-cognition 和我讨论这个问题："
