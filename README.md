@@ -1,6 +1,8 @@
 # World Cognition · 世界认知导师
 
-一个面向青少年和初学者的 Codex Skill，通过苏格拉底式对话、反例、证据与知识迁移，帮助学习者逐步建立跨自然、技术、经济、社会、历史和个人领域的世界认知体系。
+一个面向青少年和初学者的通用 Agent Skill，通过苏格拉底式对话、反例、证据与知识迁移，帮助学习者逐步建立跨自然、技术、经济、社会、历史和个人领域的世界认知体系。
+
+本项目遵循以 `SKILL.md` 为入口的 Agent Skills 目录约定，不依赖特定模型、厂商或专有 API。任何支持加载 Skills 的 Agent，都可以按其平台要求安装和使用。
 
 它不会只给出结论，而会引导学习者理解：
 
@@ -15,30 +17,36 @@
 ### 方法一：使用 Git 克隆
 
 ```bash
-git clone https://github.com/Mdboer18/world-cognition.git ~/.codex/skills/world-cognition
+git clone https://github.com/Mdboer18/world-cognition.git <AGENT_SKILLS_DIR>/world-cognition
 ```
 
-安装后重新启动 Codex，或开启一个新会话。
+将 `<AGENT_SKILLS_DIR>` 替换为你的 Agent 所使用的 Skills 目录。具体目录位置和刷新方式请参考对应 Agent 的说明；部分 Agent 需要重新启动或开启新会话后才会加载新 Skill。
 
 ### 方法二：下载 ZIP
 
-在 GitHub 或 Gitee 仓库页面点击“下载 ZIP”，解压后将整个 `world-cognition` 文件夹放到：
+在 GitHub 或 Gitee 仓库页面点击“下载 ZIP”，解压后将整个 `world-cognition` 文件夹放入 Agent 的 Skills 目录：
 
 ```text
-~/.codex/skills/world-cognition
+<AGENT_SKILLS_DIR>/world-cognition
 ```
 
-确保目录内直接包含 `SKILL.md`，不要多嵌套一层同名目录。
+安装后的目录应满足：
+
+```text
+<AGENT_SKILLS_DIR>/world-cognition/SKILL.md
+```
+
+不要在 `world-cognition` 外再多嵌套一层同名目录。
 
 ## 使用
 
-在 Codex 中可以直接说：
+如果 Agent 支持显式 Skill 调用，可以使用：
 
 ```text
 使用 $world-cognition 和我讨论：为什么城市会形成？
 ```
 
-也可以提出适合探究的问题，例如：
+如果 Agent 支持自动发现 Skills，也可以直接提出适合探究的问题，例如：
 
 - 为什么货币会有价值？
 - 为什么不同文明会发展出不同制度？
@@ -59,10 +67,17 @@ world-cognition/
 ```
 
 - `SKILL.md`：Skill 入口与工作模式
-- `agents/openai.yaml`：Codex 展示与默认提示配置
+- `agents/openai.yaml`：部分 Agent 可识别的可选界面元数据；不影响其他平台加载 `SKILL.md`
 - `prompts/`：导师对话、认知卡片和月度复盘提示
 - `rules/`：苏格拉底式教学、年龄适配和知识关联规则
 - `templates/`：认知卡片与世界认知地图模板
+
+## 兼容性
+
+- 入口文件采用通用的 `SKILL.md` 与 YAML Front Matter。
+- Skill 内容由 Markdown 文件组成，不依赖特定模型或工具调用。
+- 不同 Agent 对 Skills 的目录位置、显式调用语法和自动发现机制可能不同，请以所用平台的文档为准。
+- 平台无法识别的可选元数据文件可以被安全忽略。
 
 ## 适用边界
 
@@ -71,4 +86,3 @@ world-cognition/
 ## 许可证
 
 本项目采用 [MIT License](LICENSE)。
-
